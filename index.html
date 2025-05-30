@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bubble Tap Game</title>
+  <meta charset="utf-8">
+  <style>
+    body { margin:0; overflow:hidden; background: #e3f6ff; }
+    #score { position:fixed; top:10px; left:10px; font-size:24px; }
+    .bubble {
+      position: absolute;
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #aadfff, #1976d2);
+      cursor: pointer;
+      box-shadow: 0 0 10px #1976d2;
+      border: 2px solid #fff;
+      transition: opacity 0.2s;
+    }
+    #timer {
+      position:fixed; top:10px; right:10px; font-size:24px;
+    }
+  </style>
+</head>
+<body>
+  <div id="score">Счёт: 0</div>
+  <div id="timer">30</div>
+  <script>
+    let score = 0;
+    let timeLeft = 30;
+    function createBubble() {
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      bubble.style.top = Math.random() * (window.innerHeight - 60) + 'px';
+      bubble.style.left = Math.random() * (window.innerWidth - 60) + 'px';
+      bubble.onclick = function() {
+        score += 1;
+        document.getElementById('score').innerText = 'Счёт: ' + score;
+        bubble.style.opacity = 0;
+        setTimeout(()=>bubble.remove(), 200);
+      };
+      document.body.appendChild(bubble);
+      setTimeout(() => bubble.remove(), 1800);
+    }
+    let gameInterval = setInterval(createBubble, 600);
+    let timerInterval = setInterval(() => {
+      timeLeft--;
+      document.getElementById('timer').innerText = timeLeft;
+      if (timeLeft <= 0) {
+        clearInterval(gameInterval);
+        clearInterval(timerInterval);
+        alert('Игра окончена! Ваш счёт: ' + score);
+        location.reload();
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
