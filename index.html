@@ -1,57 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-  <title>Bubble Tap Game</title>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Твой психолог-бот</title>
+  <meta name="description" content="crisis_navigatorbot помогает разобраться в чувствах, вести дневник и получать поддержку в Telegram.">
+  <meta property="og:title" content="Твой психолог-бот">
+  <meta property="og:description" content="Бот поддержки и самопомощи с акцентом на конфиденциальность и индивидуальность.">
   <style>
-    body { margin:0; overflow:hidden; background: #e3f6ff; }
-    #score { position:fixed; top:10px; left:10px; font-size:24px; }
-    .bubble {
-      position: absolute;
-      width: 60px; height: 60px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, #aadfff, #1976d2);
-      cursor: pointer;
-      box-shadow: 0 0 10px #1976d2;
-      border: 2px solid #fff;
-      transition: opacity 0.2s;
+    body {
+      margin: 0;
+      font-family: "Inter", Arial, sans-serif;
+      background: #f7fafc;
+      color: #333;
     }
-    #timer {
-      position:fixed; top:10px; right:10px; font-size:24px;
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .block {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 2em;
+      margin: 0 0 10px;
+      text-align: center;
+    }
+    h2 {
+      margin-top: 0;
+    }
+    .cta {
+      display: block;
+      text-align: center;
+      background: #0088cc;
+      color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1em;
+      margin: 20px auto;
+      max-width: 300px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      color: #666;
+      margin: 40px 0 20px;
     }
   </style>
 </head>
 <body>
-  <div id="score">Счёт: 0</div>
-  <div id="timer">30</div>
-  <script>
-    let score = 0;
-    let timeLeft = 30;
-    function createBubble() {
-      const bubble = document.createElement('div');
-      bubble.className = 'bubble';
-      bubble.style.top = Math.random() * (window.innerHeight - 60) + 'px';
-      bubble.style.left = Math.random() * (window.innerWidth - 60) + 'px';
-      bubble.onclick = function() {
-        score += 1;
-        document.getElementById('score').innerText = 'Счёт: ' + score;
-        bubble.style.opacity = 0;
-        setTimeout(()=>bubble.remove(), 200);
-      };
-      document.body.appendChild(bubble);
-      setTimeout(() => bubble.remove(), 1800);
-    }
-    let gameInterval = setInterval(createBubble, 600);
-    let timerInterval = setInterval(() => {
-      timeLeft--;
-      document.getElementById('timer').innerText = timeLeft;
-      if (timeLeft <= 0) {
-        clearInterval(gameInterval);
-        clearInterval(timerInterval);
-        alert('Игра окончена! Ваш счёт: ' + score);
-        location.reload();
-      }
-    }, 1000);
-  </script>
+  <div class="container">
+    <section class="block">
+      <h1>Твой психолог-бот</h1>
+      <p>crisis_navigatorbot помогает разобраться в чувствах, вести дневник и отслеживать личные изменения. Вы получаете поддержку в любое время, сохраняя приватность и индивидуальный подход.</p>
+      <a class="cta" href="https://t.me/crisis_navigatorbot" target="_blank">Перейти в Telegram</a>
+    </section>
+    <section class="block">
+      <h2>В чём отличие</h2>
+      <ul>
+        <li>Запоминает твой стиль и помогает фиксировать личный прогресс.</li>
+        <li>Умеет поддерживать на человеческом уровне.</li>
+        <li>Можно вести дневник, получать AI-отчёты и настроить всё под себя.</li>
+      </ul>
+    </section>
+    <section class="block">
+      <h2>Часто спрашивают</h2>
+      <ul>
+        <li><strong>Чем бот отличается от обычных ИИ?</strong> Он ориентирован на ваши эмоции и учитывает личный контекст.</li>
+        <li><strong>Насколько всё конфиденциально?</strong> Записи остаются только у вас, бот ничего не передаёт третьим лицам.</li>
+        <li><strong>Бесплатный ли это сервис?</strong> Основные функции доступны без оплаты, расширенные опции появятся по подписке.</li>
+        <li><strong>Кому подойдёт бот?</strong> Всем, кто хочет лучше понимать себя и видеть прогресс.</li>
+      </ul>
+    </section>
+    <footer>
+      Создано с заботой, не заменяет живого специалиста
+    </footer>
+  </div>
 </body>
 </html>
